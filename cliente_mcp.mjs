@@ -70,6 +70,22 @@ await solicitar('tools/call', {
   arguments: { path: 'datos' },
 });
 
+// Solicitudes de la Actividad C:
+// 1. Lectura correcta
+await solicitar('tools/call', {
+  name: 'read_text_file',
+  arguments: { path: 'datos/calificaciones.csv' },
+});
+
+// 2. Lectura prohibida fuera de la carpeta permitida
+await solicitar('tools/call', {
+  name: 'read_text_file',
+  arguments: { path: 'C:/Windows/win.ini' },
+});
+
+// 3. Metodo que no existe
+await solicitar('herramientas/inventada', {});
+
 // 5. Al cerrar la entrada del servidor, este termina.
 servidor.stdin.end();
 
